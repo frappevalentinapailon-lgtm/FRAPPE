@@ -258,7 +258,20 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.autoTable({ head: [tableColumn], body: tableRows, startY: 50 });
         doc.setFontSize(14); doc.setFont('helvetica', 'bold');
         doc.text(`Total a Pagar: Bs ${total.toFixed(2)}`, 190, doc.lastAutoTable.finalY + 15, { align: 'right' });
-        doc.save(`pedido-frappes-valentina-${Date.now()}.pdf`);
+        //doc.save(`pedido-frappes-valentina-${Date.now()}.pdf`);
+
+        // Abrir el PDF
+            // --- MÉTODO PARA WINDOWS ---
+            // doc.output('dataurlnewwindow')
+            
+             // --- MÉTODO COMPATIBLE CON MÓVILES ---
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+            
+        // --- MÉTODO DE DESCARGA DIRECTA (PARA MÓVIL Y ESCRITORIO) ---
+        //doc.save(`credencial-${fullName.replace(/\s/g, '_')}.pdf`);
+        
         updateStockAfterPurchase();
         cart = []; 
         saveCartToStorage(); 
@@ -280,7 +293,19 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.autoTable({ startY: 65, theme: 'plain', body: [['Nombre:', data.name], ['Email:', data.email], ['Fecha:', data.date], ['Hora:', data.time], ['Personas:', data.guests]] });
         doc.setFontSize(10);
         doc.text('Por favor, presenta este comprobante al llegar a la tienda.', 20, doc.lastAutoTable.finalY + 20);
-        doc.save(`reserva-frappes-valentina-${Date.now()}.pdf`);
+        //doc.save(`reserva-frappes-valentina-${Date.now()}.pdf`);
+
+        // Abrir el PDF
+            // --- MÉTODO PARA WINDOWS ---
+            // doc.output('dataurlnewwindow')
+            
+             // --- MÉTODO COMPATIBLE CON MÓVILES ---
+        const pdfBlob = doc.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+            
+        // --- MÉTODO DE DESCARGA DIRECTA (PARA MÓVIL Y ESCRITORIO) ---
+        //doc.save(`credencial-${fullName.replace(/\s/g, '_')}.pdf`);
     }
 
     function showNotification(message, type = 'success') {
